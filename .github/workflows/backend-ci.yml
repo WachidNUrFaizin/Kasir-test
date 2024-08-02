@@ -17,10 +17,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd kasir/Backend  # Pastikan jalur ini benar sesuai struktur direktori
-          npm install
+          cd kasir/Backend  
+          yarn install
 
       - name: Run tests
         run: |
-          cd kasir/Backend  # Pastikan jalur ini benar sesuai struktur direktori
-          npm test
+          cd kasir/Backend  
+          yarn test
