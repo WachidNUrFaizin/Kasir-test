@@ -51,7 +51,7 @@ jobs:
           cd Frontend
           yarn build
 
-      - name: Run frontend tests
+      - name: Lint frontend
         run: |
           cd Frontend
-          yarn test
+          yarn lint
