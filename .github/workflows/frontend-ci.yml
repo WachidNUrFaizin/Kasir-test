@@ -12,10 +12,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./kasir/Frontend
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -23,13 +19,19 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'  # Use Node.js 20
 
       - name: Install dependencies
-        run: yarn install
+        run: |
+          cd ./Frontend  # Ensure this path is correct
+          yarn install
 
       - name: Run tests
-        run: yarn test
+        run: |
+          cd ./Frontend  # Ensure this path is correct
+          yarn test
 
       - name: Build project
-        run: yarn build
+        run: |
+          cd ./Frontend  # Ensure this path is correct
+          yarn build
