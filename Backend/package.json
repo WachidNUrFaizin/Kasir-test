@@ -6,8 +6,8 @@
   "devDependencies": {
     "json-server": "0.17.4"
   },
-
-    "scripts": {
-        "start": "json-server --watch db.json --port 3001"
-    }
+  "scripts": {
+    "start": "json-server --watch db.json --port 3001",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
