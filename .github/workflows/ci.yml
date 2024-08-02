@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    name: Backend CI
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: |
+          cd Backend
+          yarn install
+
+      - name: Run backend tests
+        run: |
+          cd Backend
+          yarn test
+
+  frontend:
+    runs-on: ubuntu-latest
+    name: Frontend CI
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: |
+          cd Frontend
+          yarn install
+
+      - name: Build frontend
+        run: |
+          cd Frontend
+          yarn build
+
+      - name: Run frontend tests
+        run: |
+          cd Frontend
+          yarn test
