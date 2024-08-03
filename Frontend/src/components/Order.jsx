@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
-import { Col, ListGroup } from 'react-bootstrap';
+import React, { useEffect } from "react";
+import { Col, ListGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart } from "../features/CartSlice.js";
+import { getCart, setDetail } from "../features/CartSlice.js";
+import TotalCart from "./TotalCart.jsx";
+import CartModal from "./CartModal.jsx";
 
 const Order = () => {
     const carts = useSelector((state) => state.cart.data);
     const loading = useSelector((state) => state.cart.loading);
     const error = useSelector((state) => state.cart.error);
     const dispatch = useDispatch();
+    const [modalShow, setModalShow] = React.useState(false);
 
     useEffect(() => {
         dispatch(getCart());
@@ -15,39 +18,51 @@ const Order = () => {
 
     return (
         <>
-            <Col md={3}>
-                <h4>Order</h4>
-                {error ? error : ""}
-                <hr />
-                <ListGroup>
-                    {carts ? carts.map((item) => (
-                        <ListGroup.Item
-                            key={item.id}
-                            variant="flush"
-                            style={{ cursor: "pointer" }}
-                        >
-                            <div className="fw-bold">{item.name}</div>
-                            <div className="d-flex justify-content-between align-items-start">
-                                <div className="me-auto">
-                                    <small>
-                                        RP {parseInt(item.price).toLocaleString("id-ID")} x {""}
-                                        {item.qty}
-                                    </small>
-                                    <p>
+            {carts && carts.length > 0 && (
+                <Col md={3} className="order-list mb-5 pb-5">
+                    <h4>Order List</h4>
+                    {error ? error : ""}
+                    <hr />
+                    <ListGroup variant="flush">
+                        {carts.map((item) => (
+                            <ListGroup.Item
+                                key={item.id}
+                                variant="flush"
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                    dispatch(setDetail(item));
+                                    setModalShow(true);
+                                }}
+                            >
+                                <div className="fw-bold">{item.name}</div>
+                                <div className="d-flex justify-content-between align-items-start">
+                                    <div className="me-auto">
                                         <small>
-                                            Total: RP {parseInt(item.price * item.qty).toLocaleString("id-ID")}
+                                            Rp {parseInt(item.price).toLocaleString("id-ID")} x{" "}
+                                            {item.qty}
                                         </small>
-                                    </p>
+                                        <p>
+                                            <small>{item.note}</small>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <strong>
+                                            <small>
+                                                Rp{" "}
+                                                {parseInt(item.price * item.qty).toLocaleString(
+                                                    "id-ID"
+                                                )}
+                                            </small>
+                                        </strong>
+                                    </div>
                                 </div>
-                            </div>
-                        </ListGroup.Item>
-                    )) : loading ? (
-                        <p>Loading...</p>
-                    ) : (
-                        <p>Data not found</p>
-                    )}
-                </ListGroup>
-            </Col>
+                            </ListGroup.Item>
+                        ))}
+                    </ListGroup>
+                    <TotalCart carts={carts} />
+                    <CartModal show={modalShow} onHide={() => setModalShow(false)} />
+                </Col>
+            )}
         </>
     );
 };

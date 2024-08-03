@@ -1,9 +1,9 @@
-import React from 'react';
 import { Row } from 'react-bootstrap';
 import NavbarComponent from './components/NavbarComponent';
 import Category from './components/Category';
 import ProductDetail from './components/ProductDetail';
 import Order from './components/Order';
+import TotalCart from './components/TotalCart';
 
 function App() {
     return (
@@ -16,6 +16,7 @@ function App() {
                     <Order />
                 </Row>
             </div>
+            <TotalCart />
         </>
     );
 }

@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Col, ListGroup } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { categorySelectors, getAllCategory } from '../features/CategorySlice.js';
+import { Col, ListGroup } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    categorySelectors,
+    getAllCategory,
+} from "../features/CategorySlice.js";
+import { useEffect, useState } from "react";
 import { IoFastFoodSharp } from "react-icons/io5";
 import { FaUtensils } from "react-icons/fa";
 import { CiCoffeeCup } from "react-icons/ci";
 import { TbBrandCakephp } from "react-icons/tb";
-import {getProduct, getProductByCategory} from "../features/ProductSlice.js";
+import { getProduct, getProductByCategory } from "../features/ProductSlice.js";
 
 const Category = () => {
     const dispatch = useDispatch();
@@ -26,52 +29,55 @@ const Category = () => {
     }
 
     const setIcon = (categori) => {
-        if(categori === 1){
+        if (categori === 1) {
             return <FaUtensils />;
-        } else if(categori === 2) {
+        } else if (categori === 2) {
             return <CiCoffeeCup />;
         } else {
             return <TbBrandCakephp />;
         }
-    }
-const showAll = () => {
-        dispatch(getProduct());
-}
+    };
 
-const categoryClicked = (id) => {
+    const showAll = () => {
+        dispatch(getProduct());
+    };
+
+    const categoryClicked = (id) => {
         dispatch(getProductByCategory(id));
-};
+    };
+
     return (
-        <Col md={2}>
+        <Col md={2} className="product-category">
             <h4>Product Kategori</h4>
             <p>{loading ? "Loading..." : ""}</p>
             <hr />
             <ListGroup>
                 <ListGroup.Item
-                    id='all001'
-                    className="mb-1 shadow-sm"
-                    active
+                    id="all001"
+                    className="mb-1 shadow-sm category-item active"
                     action
-                    onClick={() => {setActive(document.getElementById('all001')), showAll();
-                }}
+                    onClick={() => {
+                        setActive(document.getElementById("all001"));
+                        showAll();
+                    }}
                 >
-                    <IoFastFoodSharp /> All Product
+                    <IoFastFoodSharp className="me-2" /> All Product
                 </ListGroup.Item>
-            </ListGroup>
-
-            {category && category.map((item) => (
-                <ListGroup key={item.id}>
+                {category.map((item) => (
                     <ListGroup.Item
+                        key={item.id}
                         id={`key${item.id}`}
-                        className="mb-1 shadow-sm"
+                        className="mb-1 shadow-sm category-item"
                         action
-                        onClick={() =>{ setActive(document.getElementById(`key${item.id}`)), categoryClicked(item.id);
+                        onClick={() => {
+                            setActive(document.getElementById(`key${item.id}`));
+                            categoryClicked(item.id);
                         }}
                     >
                         {setIcon(item.id)} {item.name}
                     </ListGroup.Item>
-                </ListGroup>
-            ))}
+                ))}
+            </ListGroup>
         </Col>
     );
 };

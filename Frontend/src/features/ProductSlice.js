@@ -14,6 +14,14 @@ export const getProductByCategory = createAsyncThunk(
     }
 );
 
+export const getProductBySearch = createAsyncThunk(
+    "product/getProductBySearch",
+    async (query) => {
+        const response = await axios.get(`/products?name_like=${query}`);
+        return response.data;
+    }
+);
+
 const productSlice = createSlice({
     name: "product",
     initialState: {
@@ -51,6 +59,22 @@ const productSlice = createSlice({
                 state.error = null;
             })
             .addCase(getProductByCategory.rejected, (state, action) => {
+                state.error = action.error.message;
+                state.loading = false;
+                state.data = null;
+            })
+            // get product by search
+            .addCase(getProductBySearch.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.data = null;
+            })
+            .addCase(getProductBySearch.fulfilled, (state, action) => {
+                state.data = action.payload;
+                state.loading = false;
+                state.error = null;
+            })
+            .addCase(getProductBySearch.rejected, (state, action) => {
                 state.error = action.error.message;
                 state.loading = false;
                 state.data = null;
