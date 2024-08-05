@@ -58,6 +58,6 @@ jobs:
 
       - name: Deploy to Vercel
         env:
-          VERCEL_TOKEN: 03juTBltD2F4fvvP6SB5QsFi85
-          VERCEL_PROJECT_ID: prj_ScgVllkNWss8yR9VkdpDTG0SCxwg
-        run: vercel --prod --token ${{ env.VERCEL_TOKEN }} --project ${{ env.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.CICD_KASIR }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel --prod --token ${{ secrets.CICD_KASIR }} --project ${{ secrets.VERCEL_PROJECT_ID }}
