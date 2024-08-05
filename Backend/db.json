@@ -87,7 +87,26 @@
       "category_id": 3
     }
   ],
-  "carts": [],
+  "carts": [
+    {
+      "qty": "1",
+      "price": "15000",
+      "name": "Apple Pie",
+      "totalPrice": "15000",
+      "note": "",
+      "productId": "8",
+      "id": 1
+    },
+    {
+      "qty": "1",
+      "price": "20000",
+      "name": "McFlurry",
+      "totalPrice": "20000",
+      "note": "",
+      "productId": "5",
+      "id": 2
+    }
+  ],
   "orders": [
     {
       "date": "2024-01-12T04:42:20.547Z",
