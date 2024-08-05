@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -55,3 +55,9 @@ jobs:
         run: |
           cd Frontend
           yarn lint
+
+      - name: Deploy to Vercel
+        env:
+          VERCEL_TOKEN: 03juTBltD2F4fvvP6SB5QsFi85
+          VERCEL_PROJECT_ID: prj_ScgVllkNWss8yR9VkdpDTG0SCxwg
+        run: vercel --prod --token ${{ env.VERCEL_TOKEN }} --project ${{ env.VERCEL_PROJECT_ID }}

@@ -87,7 +87,17 @@
       "category_id": 3
     }
   ],
-  "carts": [],
+  "carts": [
+    {
+      "qty": "1",
+      "price": "25000",
+      "name": "Chicken McNuggets",
+      "totalPrice": "25000",
+      "note": "",
+      "productId": "2",
+      "id": 1
+    }
+  ],
   "orders": [
     {
       "date": "2024-01-12T04:42:20.547Z",
