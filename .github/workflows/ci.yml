@@ -60,4 +60,4 @@ jobs:
         env:
           VERCEL_TOKEN: ${{ secrets.CICD_KASIR }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: vercel --prod --token ${{ secrets.CICD_KASIR }} --project ${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel --prod --token ${{ secrets.CICD_KASIR }} --scope ${{ secrets.VERCEL_PROJECT_ID }}
