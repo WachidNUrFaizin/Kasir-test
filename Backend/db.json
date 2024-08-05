@@ -211,6 +211,32 @@
       "detail[2][productId]": "3",
       "detail[2][id]": "3",
       "id": 5
+    },
+    {
+      "date": "2024-08-03T07:36:00.149Z",
+      "total": "75000",
+      "detail[0][qty]": "2",
+      "detail[0][price]": "15000",
+      "detail[0][name]": "Apple Pie",
+      "detail[0][totalPrice]": "30000",
+      "detail[0][note]": "",
+      "detail[0][productId]": "8",
+      "detail[0][id]": "1",
+      "detail[1][qty]": "1",
+      "detail[1][price]": "25000",
+      "detail[1][name]": "Filet-O-Fish",
+      "detail[1][totalPrice]": "25000",
+      "detail[1][note]": "",
+      "detail[1][productId]": "7",
+      "detail[1][id]": "2",
+      "detail[2][qty]": "1",
+      "detail[2][price]": "20000",
+      "detail[2][name]": "Cheeseburger",
+      "detail[2][totalPrice]": "20000",
+      "detail[2][note]": "",
+      "detail[2][productId]": "6",
+      "detail[2][id]": "3",
+      "id": 6
     }
   ]
 }

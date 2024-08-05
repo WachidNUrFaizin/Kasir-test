@@ -29,7 +29,8 @@ const TotalCart = () => {
     return (
         <div className="total-cart">
             <div className="total-amount">
-                Total Bayar: Rp {sum.toLocaleString("id-ID")}
+                Total Bayar:
+                <br/>Rp {sum.toLocaleString("id-ID")}
             </div>
             <Button
                 variant="primary"
